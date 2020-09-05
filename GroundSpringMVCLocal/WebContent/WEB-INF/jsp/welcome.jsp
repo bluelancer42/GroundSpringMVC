@@ -10,8 +10,7 @@
 <script src="${groundJS}"></script>
 <!-- Finish adding tags -->
 
-<title>Spring MVC Tutorial - Hello World Spring MVC
-	Example</title>
+<title>Ground Subscriptions</title>
 </head>
 <body>
 ${message}
