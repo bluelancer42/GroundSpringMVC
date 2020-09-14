@@ -11,7 +11,7 @@ public class GroundHomePage {
 	public ModelAndView subscriptionPageLoad() {
 
 		String message = "<br><div style='text-align:center;'>"
-				+ "<h3>********** This message is coming from GroundHomePage.java **********</h3></div><br><br>";
+				+ "<p>********** This message is coming from GroundHomePage.java **********</p></div><br><br>";
 
 		return new ModelAndView("welcome", "message", message);
 	}
