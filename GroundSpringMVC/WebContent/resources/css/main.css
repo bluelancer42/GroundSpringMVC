@@ -1,21 +1,67 @@
 body {
+	background-color: blue;
+	padding: 16px;
+	margin-top: 38px;
+	height: 1500px; /* Used in this example to enable scrolling */
+}
+
+.btn {
+	float: right;
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.subscribe {
+	background-color: red;
+}
+
+.navbar {
+	/* overflow: hidden; */
 	background-color: black;
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
+	left: 0;
+	width: 100%; /* Full width */
 }
 
-h1 {
+/* Links inside the navbar */
+.navbar a {
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+/* Change background on mouse-over */
+.navbar a:hover {
+	background: #c0c0c0;
+	color: #ffffff;
+}
+
+.ovr-img {
 	color: white;
-	/*Nasa colors
-	 color: #FC3D21
-	 color: #0B3D91 */
+	justify-content: center;
 }
 
-h2 {
-	color: #004080;
-}
-
-h4 {
-	color: #DD2727;
-}
-p {
-	color: white;
+.bg {
+	/* The image used */
+	background-image: url("../../resources/images/NewEraSpace.png");
+	/* Full height */
+	/* height: 50%; */
+	/* Center and scale the image nicely */
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	/* position: absolute; */
+	width: 100%;
+	left: 0;
+	position: inherit;
 }
