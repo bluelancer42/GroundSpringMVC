@@ -5,13 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AdminController {
+public class SubscriptionsController {
+	@RequestMapping("/subscriptions")
+	public ModelAndView subscriptionsPageLoad() {
 
-	@RequestMapping("/admin")
-	public ModelAndView adminLoadPage() {
+		String message = "";
 
-		String message = "<br><div>Admin Home Page</div><br><br>";
-
-		return new ModelAndView("admin", "message", message);
+		return new ModelAndView("subscriptions", "message", message);
 	}
 }

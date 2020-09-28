@@ -1,0 +1,16 @@
+.main {
+	background-color: blue;
+}
+
+.header-navbar {
+	overflow: hidden;
+	background-color: transparent;
+	position: fixed; /* Set the navbar to fixed position */
+	width: 100%;
+}
+
+.header-btn {
+	float: right;
+	margin: 12px 3px;
+	margin-bottom: 4px;
+}

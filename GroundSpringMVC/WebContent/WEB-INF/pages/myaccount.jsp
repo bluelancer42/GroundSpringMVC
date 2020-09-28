@@ -1,27 +1,25 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<html>
+<html lang="en">
 <head>
 
 <spring:url value="/resources/css/bootstrap-4.5.2/bootstrap.min.css"
 	var="bootstrapCSS" />
-<spring:url value="/resources/admin.css" var="adminCSS" />
+<spring:url value="/resources/css/myaccount.css" var="myAccountCSS" />
 
 <link href="${bootstrapCSS}" rel="stylesheet" />
-<link href="${adminCSS}" rel="stylesheet" />
+<link href="${myAccountCSS}" rel="stylesheet" />
 
 <spring:url value="/resources/js/jquery/jquery-3.5.1.min.js"
 	var="jqueryJs" />
 <spring:url value="/resources/js/bootstrap-4.5.2/bootstrap.min.js"
 	var="bootstrapJs" />
-<spring:url value="/resources/admin.js" var="adminJS" />
 
 <script src="${jqueryJs}"></script>
 <script src="${bootstrapJs}"></script>
-<script src="${adminJS}"></script>
 
-<title>Ground Subscription Administration</title>
+<title>Subscriptions FAQ</title>
 </head>
-<body>
+<body class="main">
 	<header class="header-navbar">
 		<img alt="SMC Logo" src="resources/images/AFSC.png" width="50"
 			height="60"> <a href="subscribe"
