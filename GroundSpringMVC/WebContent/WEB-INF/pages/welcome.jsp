@@ -24,66 +24,97 @@
 
 <title>Ground Subscriptions</title>
 </head>
-<body class="main">
-	<header class="header-navbar">
-		<a href="welcome"> <img alt="SMC Logo"
-			src="resources/images/AFSC.png" width="50" height="60"></a> <a
-			href="subscribe" class="btn btn-danger header-btn">Subscribe</a> <a
-			href="faq" class="btn btn-default header-btn">FAQ</a> <a
-			href="subscriptions" class="btn btn-default header-btn">Subscriptions</a>
-		<a href="myaccount" class="btn btn-default header-btn">My Account</a>
-		<a href="admin" class="btn btn-default header-btn">Admin</a>
-	</header>
-	<div class="container">
-		<div class="panel-group">
-			<div class="panel panel-default">
-				<div class="ovr-img panel-body bg">
+<body>
+	<div class="container-fluid pl-0 px-0">
+		<nav class="navbar sticky-top navbar-dark bg-dark">
+			<a class="navbar-brand" href="welcome">
+				<img alt="SMC Logo" src="resources/images/AFSC.png" width="50"
+					height="60">
+			</a>
+			<a href="admin" class="btn btn-dark header-btn navbar-brand">Admin</a>
+
+			<a href="myaccount" class="btn btn-dark header-btn navbar-brand">My
+				Account</a>
+			<a href="subscriptions" class="btn btn-dark header-btn navbar-brand">Subscriptions</a>
+			<a href="faq" class="btn btn-dark header-btn navbar-brand">FAQ</a>
+			<a href="subscribe" class="btn btn-danger header-btn navbar-brand">Subscribe</a>
+		</nav>
+		<div class="card bg-dark text-white">
+			<img class="card-img" alt="NewEraSpace.png"
+				src="resources/images/NewEraSpace.png" />
+			<div class="card-img-overlay">
+				<h5 class="card-title">Lorem ipsum dolor</h5>
+				<p class="card-text">
+					Sit amet, consectetur <br> adipiscing elit, sed do eiusmod
+					tempor<br> incididunt ut labore et dolore magna aliqua. <br>
+					Amet facilisis magna etiam tempor orci<br> eu lobortis.
+				</p>
+				<p class="card-text">Viverra aliquet eget sit amet tellus cras
+					adipiscing.</p>
+				<a href="subscribe" class="btn btn-danger header-btn navbar-brand">Subscribe</a>
+			</div>
+		</div>
+		<div class="card bg-dark text-white">
+			<div class="card-horizontal d-flex">
+				<div class="img-squar-wrapper">
+					<img class="" src="resources/images/SpaceEarth.png"
+						alt="SpaceEarth">
+				</div>
+				<div
+					class="card-body align-items-center d-flex justify-content-center">
+					<div class="card-text text-center">
+						Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit,
+						sed do eiusmod tempor<br> incididunt ut labore et dolore
+						magna aliqua. <br> Amet facilisis magna etiam tempor orci<br>
+						eu lobortis. Viverra aliquet eget sit amet tellus cras adipiscing.
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="card bg-dark text-white">
+			<div class="card-body">
+				<div class="card-text">
 					Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit,
 					sed do eiusmod tempor<br> incididunt ut labore et dolore magna
 					aliqua. <br> Amet facilisis magna etiam tempor orci<br>
 					eu lobortis. Viverra aliquet eget sit amet tellus cras adipiscing.
-					<button class="ovr-img ovr-img-btn btn btn-danger">Subscribe</button>
 				</div>
 			</div>
-			<div class="panel panel-default border-dark">
-				<div class="panel-body">
-					Lorem ipsum dolor sit amet, consectetur <br> adipiscing elit,
-					sed do eiusmod tempor<br> incididunt ut labore et dolore magna
-					aliqua. <br> Amet facilisis magna etiam tempor orci<br>
-					eu lobortis. Viverra aliquet eget sit amet tellus cras adipiscing.
-				</div>
-			</div>
-			<div class="panel panel-default">
-				${message} <br>
-				<div>
-					<div id="groundMessage"></div>
-					<br>
-					<div id="msg"></div>
-				</div>
-				<br>
-				<div>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-						do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-					<p>Ullamcorper velit sed ullamcorper morbi tincidunt.</p>
-					<p>Amet justo donec enim diam vulputate.</p>
-					<p>Phasellus egestas tellus rutrum tellus pellentesque eu
-						tincidunt.</p>
-					<p>Gravida quis blandit turpis cursus in hac.</p>
-					<p>Est ullamcorper eget nulla facilisi etiam dignissim.</p>
-					<p>Vulputate sapien nec sagittis aliquam malesuada bibendum
-						arcu vitae.</p>
-					<p>Malesuada nunc vel risus commodo viverra maecenas accumsan
-						lacus.</p>
-					<p>Diam maecenas ultricies mi eget mauris pharetra et ultrices.</p>
-					<p>Diam maecenas ultricies mi eget.</p>
-					<p>Urna et pharetra pharetra massa massa ultricies mi quis
-						hendrerit.</p>
-					<p>Cursus in hac habitasse platea.</p>
-					<p>Sed risus ultricies tristique nulla aliquet enim tortor at.</p>
-					<p>Neque volutpat ac tincidunt vitae semper quis lectus.</p>
-					<p>Platea dictumst vestibulum rhoncus est pellentesque elit
-						ullamcorper dignissim.</p>
-					<form></form>
+			<div class="card bg-dark text-white">
+				<div class="card-body">
+					<div class="card-text">
+						${message} <br>
+						<div>
+							<div id="groundMessage"></div>
+							<br>
+							<div id="msg"></div>
+						</div>
+						<br>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua.</p>
+						<p>Ullamcorper velit sed ullamcorper morbi tincidunt.</p>
+						<p>Amet justo donec enim diam vulputate.</p>
+						<p>Phasellus egestas tellus rutrum tellus pellentesque eu
+							tincidunt.</p>
+						<p>Gravida quis blandit turpis cursus in hac.</p>
+						<p>Est ullamcorper eget nulla facilisi etiam dignissim.</p>
+						<p>Vulputate sapien nec sagittis aliquam malesuada bibendum
+							arcu vitae.</p>
+						<p>Malesuada nunc vel risus commodo viverra maecenas accumsan
+							lacus.</p>
+						<p>Diam maecenas ultricies mi eget mauris pharetra et
+							ultrices.</p>
+						<p>Diam maecenas ultricies mi eget.</p>
+						<p>Urna et pharetra pharetra massa massa ultricies mi quis
+							hendrerit.</p>
+						<p>Cursus in hac habitasse platea.</p>
+						<p>Sed risus ultricies tristique nulla aliquet enim tortor at.</p>
+						<p>Neque volutpat ac tincidunt vitae semper quis lectus.</p>
+						<p>Platea dictumst vestibulum rhoncus est pellentesque elit
+							ullamcorper dignissim.</p>
+						<form></form>
+					</div>
 				</div>
 			</div>
 		</div>

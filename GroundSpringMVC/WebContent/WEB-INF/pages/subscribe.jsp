@@ -20,14 +20,21 @@
 <title>Subscribe</title>
 </head>
 <body class="main">
-	<header class="header-navbar">
-		<a href="welcome"> <img alt="SMC Logo"
-			src="resources/images/AFSC.png" width="50" height="60"></a> <a
-			href="subscribe" class="btn btn-danger header-btn">Subscribe</a> <a
-			href="faq" class="btn btn-default header-btn">FAQ</a> <a
-			href="subscriptions" class="btn btn-default header-btn">Subscriptions</a>
-		<a href="myaccount" class="btn btn-default header-btn">My Account</a>
-		<a href="admin" class="btn btn-default header-btn">Admin</a>
-	</header>
+	<div class="container-fluid pl-0 px-0">
+		<!-- <nav class="navbar fixed-top navbar-dark bg-dark"> -->
+		<nav class="navbar sticky-top navbar-dark bg-dark">
+			<a class="navbar-brand" href="welcome">
+				<img alt="SMC Logo" src="resources/images/AFSC.png" width="50"
+					height="60">
+			</a>
+			<a href="admin" class="btn btn-dark header-btn navbar-brand">Admin</a>
+
+			<a href="myaccount" class="btn btn-dark header-btn navbar-brand">My
+				Account</a>
+			<a href="subscriptions" class="btn btn-dark header-btn navbar-brand">Subscriptions</a>
+			<a href="faq" class="btn btn-dark header-btn navbar-brand">FAQ</a>
+			<a href="subscribe" class="btn btn-danger header-btn navbar-brand">Subscribe</a>
+		</nav>
+	</div>
 </body>
 </html>

@@ -1,21 +1,8 @@
-.main {
-	background-color: black;
+body {
+	background-color: #282b2b;
 }
 
 .card {
-	background-color: black;
+	background-color: #282b2b;
 	color: white;
-}
-
-.header-navbar {
-	overflow: hidden;
-	background-color: transparent;
-	position: initial;
-	width: 100%;
-}
-
-.header-btn {
-	float: right;
-	margin: 12px 3px;
-	margin-bottom: 4px;
 }
