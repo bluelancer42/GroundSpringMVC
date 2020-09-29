@@ -26,11 +26,12 @@ public class Subscriptions implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer subscription_id;
 
 	@NotEmpty
 	@Column(nullable = false, unique = true)
 	private String name;
+
 	private Date lastSentDate;
 
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -41,19 +42,19 @@ public class Subscriptions implements Serializable {
 	public Subscriptions() {
 	}
 
-	public Subscriptions(Integer id, String name, Date lastSentDate) {
+	public Subscriptions(Integer subscription_id, String name, Date lastSentDate) {
 		super();
-		this.id = id;
+		this.subscription_id = subscription_id;
 		this.name = name;
 		this.lastSentDate = lastSentDate;
 	}
 
 	public Integer getId() {
-		return id;
+		return subscription_id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer subscription_id) {
+		this.subscription_id = subscription_id;
 	}
 
 	public String getName() {

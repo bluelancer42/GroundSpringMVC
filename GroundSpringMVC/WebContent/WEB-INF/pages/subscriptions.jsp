@@ -43,6 +43,10 @@
 							<div class="col">Subscription</div>
 							<div class="col">Date Last Sent</div>
 						</div>
+						<div class="row">
+							<div class="col">Subscription</div>
+							<div class="col">Date Last Sent</div>
+						</div>
 						<div></div>
 					</div>
 				</div>
