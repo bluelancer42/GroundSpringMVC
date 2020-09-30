@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
 <head>
 
@@ -43,6 +44,12 @@
 							<div class="col">Subscription</div>
 							<div class="col">Date Last Sent</div>
 						</div>
+						<c:forEach items="${subscriptions}" var="subscriptions">
+							<div class="row">
+								<div class="col">${subscriptions.name}</div>
+								<div class="col">${subscriptions.lastSentDate}</div>
+							</div>
+						</c:forEach>
 						<div></div>
 					</div>
 				</div>
