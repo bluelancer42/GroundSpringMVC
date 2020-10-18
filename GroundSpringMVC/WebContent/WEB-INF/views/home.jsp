@@ -5,16 +5,18 @@
 <spring:url value="/resources/css/main.css" var="mainCss" />
 <spring:url value="/resources/css/bootstrap-4.5.2/bootstrap.min.css"
 	var="bootstrapCSS" />
+<spring:url value="/resources/css/faq.css" var="faqCSS" />
+
+<link href="${bootstrapCSS}" rel="stylesheet" />
+<link href="${mainCss}" rel="stylesheet" />
+
 <spring:url value="/resources/js/jquery/jquery-3.5.1.min.js"
 	var="jqueryJs" />
-<spring:url
-	value="/resources/js/bootstrap/bootstrap-4.5.2/bootstrap.min.js"
+<spring:url value="/resources/js/bootstrap-4.5.2/bootstrap.min.js"
 	var="bootstrapJs" />
 <spring:url value="/resources/js/main.js" var="mainJs" />
 <spring:url value="/resources/js/ground.js" var="groundJS" />
 
-<link href="${bootstrapCSS}" rel="stylesheet" />
-<link href="${mainCss}" rel="stylesheet" />
 <script src="${jqueryJs}"></script>
 <script src="${mainJs}"></script>
 <script src="${groundJS}"></script>
@@ -26,18 +28,31 @@
 </head>
 <body>
 	<div class="container-fluid pl-0 px-0">
-		<nav class="navbar sticky-top navbar-dark bg-dark">
-			<a class="navbar-brand" href="welcome">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+			<!-- Brand -->
+			<a class="navbar-brand" href="index">
 				<img alt="SMC Logo" src="resources/images/AFSC.png" width="50"
 					height="60">
 			</a>
-			<a href="admin" class="btn btn-dark header-btn navbar-brand">Admin</a>
-
-			<a href="myaccount" class="btn btn-dark header-btn navbar-brand">My
-				Account</a>
-			<a href="subscriptions" class="btn btn-dark header-btn navbar-brand">Subscriptions</a>
-			<a href="faq" class="btn btn-dark header-btn navbar-brand">FAQ</a>
-			<a href="subscribe" class="btn btn-danger header-btn navbar-brand">Subscribe</a>
+			<!-- Toggler/collapsibe Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- Navbar links -->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+					<li class="nav-item"><a class="nav-link" href="myaccount">My
+							Account</a></li>
+					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>
+					<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
+					<li class="nav-item "><a class="btn btn-danger header-btn"
+							href="subscribe">Subscribe</a></li>
+				</ul>
+			</div>
 		</nav>
 		<div class="card bg-dark text-white">
 			<img class="card-img" alt="NewEraSpace.png"

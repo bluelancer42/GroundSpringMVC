@@ -21,20 +21,31 @@
 </head>
 <body>
 	<div class="container-fluid pl-0 px-0">
-		<nav class="navbar sticky-top navbar-dark bg-dark">
-			<a class="navbar-brand" href="welcome">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+			<!-- Brand -->
+			<a class="navbar-brand" href="index">
 				<img alt="SMC Logo" src="resources/images/AFSC.png" width="50"
 					height="60">
 			</a>
-			<a href="admin" class="btn btn-dark header-btn navbar-brand">Admin</a>
-
-			<a href="myaccount" class="btn btn-dark header-btn navbar-brand">My
-				Account</a>
-			<a href="subscriptions" class="btn btn-dark header-btn navbar-brand">Subscriptions</a>
-			<a href="faq" class="btn btn-dark header-btn navbar-brand">FAQ</a>
-			<a href="subscribe" class="btn btn-danger header-btn navbar-brand">Subscribe</a>
+			<!-- Toggler/collapsibe Button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#collapsibleNavbar"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<!-- Navbar links -->
+			<div class="collapse navbar-collapse" id="collapsibleNavbar">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+					<li class="nav-item"><a class="nav-link" href="myaccount">My
+							Account</a></li>
+					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>
+					<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
+					<li class="nav-item "><a class="btn btn-danger header-btn" href="subscribe">Subscribe</a></li>
+				</ul>
+			</div>
 		</nav>
-
 		<div id="accordion">
 			<h3 class="text-light">First Group</h3>
 			<div class="card">

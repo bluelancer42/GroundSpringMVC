@@ -7,75 +7,54 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>5.2.9.RELEASE</spring.version>
+		<java-version>14</java-version>
+		<org.springframework-version>
+			5.2.9.RELEASE
+		</org.springframework-version>
 		<spring-security.version>5.2.6.RELEASE</spring-security.version>
+		<org.aspectj-version>1.7.4</org.aspectj-version>
+		<org.slf4j-version>1.7.5</org.slf4j-version>
 		<hibernate.version>5.2.17.Final</hibernate.version>
-		<c3p0.version>0.9.5.2</c3p0.version>
 	</properties>
-	<build>
-		<sourceDirectory>src</sourceDirectory>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.3</version>
-				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<dependencies>
-		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-			<version>${spring.version}</version>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>${spring.version}</version>
+			<version>${org.springframework-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${spring.version}</version>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
+		<!-- Spring ORM -->
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${spring.version}</version>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
+		<!-- Spring Data -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>2.3.4.RELEASE</version>
 		</dependency>
-
 		<!--security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -103,29 +82,10 @@
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring-security.version}</version>
 		</dependency>
-
-		<!-- servlets and jps -->
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>4.0.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-extras</artifactId>
-			<version>3.0.8</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>jcl-over-slf4j</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.2.17</version>
 		</dependency>
 		<!-- Hibernate -->
 		<dependency>
@@ -135,57 +95,159 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
-			<version>5.4.3.Final</version>
-		</dependency>
-		<!-- Hibernate-C3P0 Integration -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-c3p0</artifactId>
+			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<!-- c3p0 -->
 		<dependency>
-			<groupId>com.mchange</groupId>
-			<artifactId>c3p0</artifactId>
-			<version>${c3p0.version}</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.1.6.Final</version>
+		</dependency>
+		<!-- Apache Commons DBCP -->
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j-version}</version>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.34</version>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
 		</dependency>
-
-		<!-- Junit Testing -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${org.slf4j-version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.15</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.mail</groupId>
+					<artifactId>mail</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>javax.jms</groupId>
+					<artifactId>jms</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jdmk</groupId>
+					<artifactId>jmxtools</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.jmx</groupId>
+					<artifactId>jmxri</artifactId>
+				</exclusion>
+			</exclusions>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- @Inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- <dependency> <groupId>javax.servlet</groupId> <artifactId>javax.servlet-api</artifactId> 
+			<version>4.0.1</version> <scope>provided</scope> </dependency> -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.13</version>
+			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		<!-- API, java.xml.bind module -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<version>1.4.200</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>taglibs</groupId>
-			<artifactId>standard</artifactId>
-			<version>1.1.2</version>
+			<groupId>jakarta.xml.bind</groupId>
+			<artifactId>jakarta.xml.bind-api</artifactId>
+			<version>2.3.2</version>
 		</dependency>
 
+		<!-- Runtime, com.sun.xml.bind module -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-			<version>5.1.21</version>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.2</version>
 		</dependency>
-
 		<dependency>
-			<groupId>org.apache.tomcat.embed</groupId>
-			<artifactId>tomcat-embed-jasper</artifactId>
-			<version>10.0.0-M8</version>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.27.0-GA</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<release>14</release>
+					<compilerArgument>
+						-Xlint:all
+					</compilerArgument>
+					<showWarnings>true</showWarnings>
+					<showDeprecation>true</showDeprecation>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.2.3</version>
+				<configuration>
+					<warSourceDirectory>WebContent</warSourceDirectory>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.9</version>
+				<configuration>
+					<additionalProjectnatures>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+					<additionalBuildcommands>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> 
+				<version>1.2.1</version> <configuration> <mainClass>org.test.int1.Main</mainClass> 
+				</configuration> </plugin> -->
+		</plugins>
+		<finalName>${project.artifactId}</finalName>
+	</build>
 </project>
