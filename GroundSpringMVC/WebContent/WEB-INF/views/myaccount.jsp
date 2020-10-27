@@ -15,6 +15,7 @@
 	var="jqueryJs" />
 <spring:url value="/resources/js/bootstrap-4.5.2/bootstrap.min.js"
 	var="bootstrapJs" />
+<spring:url value="/resources/js/myaccount.js" var="myaccountJs" />
 
 <script src="${jqueryJs}"></script>
 <script src="${bootstrapJs}"></script>
@@ -98,6 +99,7 @@
 		<br>
 		<h3>Subscriptions List</h3>
 		<br>
+		<script src="${myaccountJs}"></script>
 		<div class="card-columns">
 			<c:forEach items="${subscription.subscriptions}" var="subscription"
 				varStatus="status">
@@ -109,9 +111,9 @@
 							<div class="row card-text ">
 								<table>
 									<tr>
-										<th>Subscription Name</th>
+										<th>Product Name</th>
 										<td><form:input
-												path="subscriptions[${status.index}].subscriptionName"
+												path="subscriptions[${status.index}].product.productName"
 												readonly="true" disabled="true" class="subscriptionInput" /></td>
 									</tr>
 									<tr>
@@ -123,6 +125,49 @@
 									<tr>
 										<td><form:hidden
 												path="subscriptions[${status.index}].subscriptionId" /></td>
+									</tr>
+									<tr>
+										<th>Send to destination or Get URL</th>
+										<td>Send to destination: <form:radiobutton
+												path="subscriptions[${status.index}].toSend" class="toSend"
+												value="true" />
+										</td>
+									</tr>
+									<tr>
+										<th />
+										<td>Get URL: <form:radiobutton
+												path="subscriptions[${status.index}].toSend" class="toSend"
+												value="false" />
+										</td>
+									</tr>
+									<tr>
+										<th hidden="true"
+											class="subscriptions[${status.index}].destinationType">Send
+											to Email:</th>
+										<td><form:checkbox
+												path="subscriptions[${status.index}].destinationType"
+												value="email" hidden="true"
+												class="subscriptions[${status.index}].destinationType" /></td>
+									</tr>
+									<tr>
+										<th hidden="true"
+											class="subscriptions[${status.index}].destinationType">Send
+											through SFTP:</th>
+										<td><form:checkbox
+												path="subscriptions[${status.index}].destinationType"
+												value="sftp" hidden="true" disabled="true"
+												data-toggle="tooltip" data-placement="top"
+												title="Functionality Coming soon"
+												class="subscriptions[${status.index}].destinationType" /></td>
+									</tr>
+									<tr>
+										<th hidden="true"
+											class="subscriptions[${status.index}].destination">Destination:</th>
+										<td><form:input id="destination"
+												path="subscriptions[${status.index}].destination"
+												maxlength="200" hidden="true"
+												placeholder="/home/mydir/finaldest"
+												class="subscriptions[${status.index}].destination" /></td>
 									</tr>
 								</table>
 								<input type="submit" class="btn btn-danger float-right"
@@ -137,5 +182,6 @@
 			</c:forEach>
 		</div>
 	</div>
+	<script src="${myaccountJs}"></script>
 </body>
 </html>

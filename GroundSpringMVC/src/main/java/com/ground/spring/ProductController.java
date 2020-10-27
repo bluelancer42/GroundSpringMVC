@@ -7,23 +7,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.ground.spring.model.Products;
-import com.ground.spring.service.ProductsService;
+import com.ground.spring.model.Product;
+import com.ground.spring.service.ProductService;
 
 @Controller
-public class ProductsController {
-	private ProductsService productsService;
+public class ProductController {
+	private ProductService productService;
 
 	@Autowired(required = true)
-	@Qualifier(value = "productsService")
-	public void setProductsService(ProductsService ps) {
-		this.productsService = ps;
+	@Qualifier(value = "productService")
+	public void setProductService(ProductService ps) {
+		this.productService = ps;
 	}
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
-	public String listProducts(Model model) {
-		model.addAttribute("Products", new Products());
-		model.addAttribute("listProducts", this.productsService.listProducts());
+	public String listProduct(Model model) {
+		model.addAttribute("Product", new Product());
+		model.addAttribute("listProduct", this.productService.listProduct());
 		return "products";
 	}
 

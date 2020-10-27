@@ -10,7 +10,7 @@ public interface SubscriptionService {
 
 	public void updateSubscription(Subscription p);
 
-	public void updateSubscriptionById(Integer id, String bbox);
+	public void updateSubscriptionById(Subscription subscription);
 
 	public List<Subscription> listSubscription();
 
@@ -19,5 +19,7 @@ public interface SubscriptionService {
 	public List<Subscription> getSubscriptionByUserId(int id);
 
 	public void removeSubscription(int id);
+
+	public String getSubscriptionUrl(Subscription subscription);
 
 }

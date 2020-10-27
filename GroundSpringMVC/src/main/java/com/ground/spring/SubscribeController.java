@@ -1,20 +1,28 @@
 package com.ground.spring;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
+import com.ground.spring.model.Product;
 import com.ground.spring.model.Subscription;
+import com.ground.spring.model.User;
+import com.ground.spring.service.ProductService;
 import com.ground.spring.service.SubscriptionService;
+import com.ground.spring.service.UserService;
 
 @Controller
 public class SubscribeController {
+
 	private SubscriptionService subscriptionService;
+	private ProductService productService;
+	private UserService userService;
 
 	@Autowired(required = true)
 	@Qualifier(value = "subscriptionService")
@@ -22,27 +30,36 @@ public class SubscribeController {
 		this.subscriptionService = ss;
 	}
 
-	@RequestMapping("/subscribe")
-	public ModelAndView subscribePageLoad() {
-
-		String message = "";
-
-		return new ModelAndView("subscribe", "message", message);
+	@Autowired(required = true)
+	@Qualifier(value = "productService")
+	public void setProductService(ProductService ps) {
+		this.productService = ps;
 	}
 
-	@RequestMapping(value = "/subscribe/add", method = RequestMethod.POST)
-	public String addSubscription(@ModelAttribute("subscription") Subscription p) {
-		if (p.getSubscriptionId() == 0) {
-			this.subscriptionService.addSubscription(p);
-		} else {
-			this.subscriptionService.updateSubscription(p);
+	@Autowired(required = true)
+	@Qualifier(value = "userService")
+	public void setUserService(UserService us) {
+		this.userService = us;
+	}
+
+	@RequestMapping(value = "/subscribe", method = RequestMethod.GET)
+	public String listSubscriptions(String username, Model model) {
+		User user = this.userService.getUserById(2);
+		List<Product> productList = this.productService.listProduct();
+		model.addAttribute("listProduct", productList);
+		model.addAttribute("user", user);
+		model.addAttribute("subscription", new Subscription());
+		return "subscribe";
+	}
+
+	@RequestMapping(value = "/addSubscription", method = RequestMethod.POST)
+	public String addSubscription(@ModelAttribute("subscription") Subscription subscription) {
+		subscription.setProduct(this.productService.getProductById(subscription.getProduct().getProductId()));
+		subscription.setUser(this.userService.getUserById(subscription.getUser().getUserId()));
+		if (!subscription.getToSend()) {
+			subscription.setUrl(this.subscriptionService.getSubscriptionUrl(subscription));
 		}
-		return "redirect:/subscribe";
-	}
-
-	@RequestMapping("/removesubscription/{id}")
-	public String removeSubscription(@PathVariable("id") int id) {
-		this.subscriptionService.removeSubscription(id);
+		this.subscriptionService.addSubscription(subscription);
 		return "redirect:/subscribe";
 	}
 

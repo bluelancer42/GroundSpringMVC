@@ -44,12 +44,16 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 
 	@SuppressWarnings({ "rawtypes" })
 	@Override
-	public void updateSubscriptionById(Integer id, String bbox) {
+	public void updateSubscriptionById(Subscription subscription) {
 		Session session = this.sessionFactory.getCurrentSession();
-		String hql = "UPDATE Subscription SET  bbox=:bbox WHERE subscriptionId=:id";
+		String hql = "UPDATE Subscription SET  bbox=:bbox, toSend=:toSend, destinationType=:destinationType, url=:url, destination=:destination WHERE subscriptionId=:id";
 		Query query = session.createQuery(hql);
-		query.setParameter("bbox", bbox);
-		query.setParameter("id", id);
+		query.setParameter("bbox", subscription.getBbox());
+		query.setParameter("id", subscription.getSubscriptionId());
+		query.setParameter("toSend", subscription.getToSend());
+		query.setParameter("destinationType", subscription.getDestinationType());
+		query.setParameter("url", subscription.getUrl());
+		query.setParameter("destination", subscription.getDestination());
 		int result = query.executeUpdate();
 		logger.info("Subscription updated successfully, Subscription Details=" + result);
 	}
@@ -81,7 +85,7 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 		CriteriaBuilder builder = session.getCriteriaBuilder();
 		CriteriaQuery<Subscription> criteria = builder.createQuery(Subscription.class);
 		Root<Subscription> mySubscriptionRoot = criteria.from(Subscription.class);
-		Join<Subscription, User> joinObject = mySubscriptionRoot.join("userId");
+		Join<Subscription, User> joinObject = mySubscriptionRoot.join("user");
 		criteria.select(mySubscriptionRoot).where(joinObject.get("userId").in(id));
 		criteria.orderBy(builder.asc(mySubscriptionRoot.get("subscriptionId")));
 		List<Subscription> subscriptionsList = session.createQuery(criteria).getResultList();
@@ -99,5 +103,11 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 			session.delete(p);
 		}
 		logger.info("Subscription deleted successfully, Subscription details=" + p);
+	}
+
+	public String getSubscriptionUrl(Subscription subscription) {
+		String url = "https://testurlfordestination.com?";
+		url = url + "BBOX=" + subscription.getBbox().toString();
+		return url;
 	}
 }

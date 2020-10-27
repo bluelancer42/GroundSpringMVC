@@ -15,35 +15,35 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @SuppressWarnings("deprecation")
 @Entity
-@Table(name = "products", schema = "Subscriptions")
-public class Products implements Serializable {
+@Table(name = "product", schema = "EWS")
+public class Product implements Serializable {
 	private static final long serialVersionUID = 1553653694074548541L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer productsId;
+	private Integer productId;
 
 	@NotEmpty
 	@Column(nullable = false, unique = true)
 	private String productName;
 	private Date dateReceived;
 
-	public Products() {
+	public Product() {
 	}
 
-	public Products(Integer productsId, String productName, Date dateReceived) {
+	public Product(Integer productId, String productName, Date dateReceived) {
 		super();
-		this.productsId = productsId;
+		this.productId = productId;
 		this.productName = productName;
 		this.dateReceived = dateReceived;
 	}
 
-	public Integer getProductsId() {
-		return productsId;
+	public Integer getProductId() {
+		return productId;
 	}
 
-	public void setProductsId(Integer productsId) {
-		this.productsId = productsId;
+	public void setProductId(Integer productId) {
+		this.productId = productId;
 	}
 
 	public String getProductName() {
@@ -65,7 +65,7 @@ public class Products implements Serializable {
 	@Override
 	public int hashCode() {
 		int hash = 7;
-		hash = 79 * hash + Objects.hashCode(this.productsId);
+		hash = 79 * hash + Objects.hashCode(this.productId);
 		hash = 79 * hash + Objects.hashCode(this.productName);
 		hash = 79 * hash + Objects.hashCode(this.dateReceived);
 		return hash;
@@ -82,20 +82,20 @@ public class Products implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final Products other = (Products) obj;
+		final Product other = (Product) obj;
 		if (!Objects.equals(this.productName, other.productName)) {
 			return false;
 		}
 		if (!Objects.equals(this.dateReceived, other.dateReceived)) {
 			return false;
 		}
-		return Objects.equals(this.productsId, other.productsId);
+		return Objects.equals(this.productId, other.productId);
 	}
 
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder("Products{");
-		sb.append("productsId=").append(productsId);
+		sb.append("productId=").append(productId);
 		sb.append(", productName='").append(productName).append('\'');
 		sb.append(", dateReceived='").append(dateReceived);
 		sb.append('}');

@@ -48,7 +48,7 @@
 					com.ground.spring.model.User
 				</beans:value>
 				<beans:value>
-					com.ground.spring.model.Products
+					com.ground.spring.model.Product
 				</beans:value>
 			</beans:list>
 		</beans:property>
@@ -75,14 +75,14 @@
 			ref="subscriptionDAO">
 		</beans:property>
 	</beans:bean>
-	<beans:bean id="productsDAO"
-		class="com.ground.spring.dao.ProductsDAOImpl">
+	<beans:bean id="productDAO"
+		class="com.ground.spring.dao.ProductDAOImpl">
 		<beans:property name="sessionFactory"
 			ref="hibernate5AnnotatedSessionFactory" />
 	</beans:bean>
-	<beans:bean id="productsService"
-		class="com.ground.spring.service.ProductsServiceImpl">
-		<beans:property name="productsDAO" ref="productsDAO">
+	<beans:bean id="productService"
+		class="com.ground.spring.service.ProductServiceImpl">
+		<beans:property name="productDAO" ref="productDAO">
 		</beans:property>
 	</beans:bean>
 	<beans:bean id="userDAO"

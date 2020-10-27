@@ -32,8 +32,8 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
 	@Override
 	@Transactional
-	public void updateSubscriptionById(Integer id, String bbox) {
-		this.subscriptionDAO.updateSubscriptionById(id, bbox);
+	public void updateSubscriptionById(Subscription subscription) {
+		this.subscriptionDAO.updateSubscriptionById(subscription);
 	}
 
 	@Override
@@ -58,5 +58,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	@Transactional
 	public void removeSubscription(int id) {
 		this.subscriptionDAO.removeSubscription(id);
+	}
+
+	@Override
+	@Transactional
+	public String getSubscriptionUrl(Subscription subscription) {
+		return this.subscriptionDAO.getSubscriptionUrl(subscription);
 	}
 }

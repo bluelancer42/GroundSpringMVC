@@ -50,7 +50,7 @@
 		</nav>
 		<div class="card bg-dark text-white card-bg">
 			<div class="card-body card-bg">
-				<c:if test="${!empty listProducts}">
+				<c:if test="${!empty listProduct}">
 					<h5 class="card-title card-bg">Available Products</h5>
 					<div class="card-text card-bg">
 						<div class="container">
@@ -58,10 +58,10 @@
 								<div class="col">Product Name</div>
 								<div class="col">Date Last Received</div>
 							</div>
-							<c:forEach items="${listProducts}" var="products">
+							<c:forEach items="${listProduct}" var="product">
 								<div class="row">
-									<div class="col">${products.productName}</div>
-									<div class="col">${products.dateReceived}</div>
+									<div class="col">${product.productName}</div>
+									<div class="col">${product.dateReceived}</div>
 								</div>
 							</c:forEach>
 							<div></div>

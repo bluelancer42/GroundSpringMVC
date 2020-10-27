@@ -41,12 +41,10 @@ public class MyAccountController {
 	@RequestMapping(value = "/myaccount", method = RequestMethod.GET)
 	public String myAccountPageLoad(Model model) {
 		List<Subscription> subscriptions = this.subscriptionService.getSubscriptionByUserId(2);
-		Subscription first = subscriptions.get(0);
 		SubscriptionForm subscriptionForm = new SubscriptionForm();
 		subscriptionForm.setSubscriptions(subscriptions);
 
 		model.addAttribute("subscription", subscriptionForm);
-		model.addAttribute("subscriptionFirst", first);
 		model.addAttribute("user", this.userService.getUserById(2));
 		return "myaccount";
 	}
@@ -63,25 +61,14 @@ public class MyAccountController {
 		if (null != subscriptions && subscriptions.size() > 0) {
 			MyAccountController.subscription = subscriptions;
 			for (Subscription subs : subscription) {
-				this.subscriptionService.updateSubscriptionById(subs.getSubscriptionId(), subs.getBbox());
+				if (subs.getToSend() != null) {
+					if (!subs.getToSend()) {
+						subs.setUrl(this.subscriptionService.getSubscriptionUrl(subs));
+					}
+					this.subscriptionService.updateSubscriptionById(subs);
+				}
 			}
 		}
-		return "redirect:/myaccount";
-	}
-
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("user") User p) {
-		if (p.getUserId() == 0) {
-			this.userService.addUser(p);
-		} else {
-			this.userService.updateUser(p);
-		}
-		return "redirect:/myaccount";
-	}
-
-	@RequestMapping("/removeuser/{id}")
-	public String removeUser(@PathVariable("id") int id) {
-		this.userService.removeUser(id);
 		return "redirect:/myaccount";
 	}
 
@@ -89,14 +76,6 @@ public class MyAccountController {
 	public String removeMySubscription(@PathVariable("id") int id) {
 		this.subscriptionService.removeSubscription(id);
 		return "redirect:/myaccount";
-	}
-
-	@RequestMapping("/edituser/{id}")
-	public String editUser(@PathVariable("id") int id, Model model) {
-		model.addAttribute("user", this.userService.getUserById(id));
-		model.addAttribute("listUser", this.userService.listUser());
-
-		return "myaccount";
 	}
 
 }
