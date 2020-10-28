@@ -1,3 +1,23 @@
 body {
 	background-color: #282b2b;
 }
+
+table {
+	width: 100%;
+}
+
+h3 {
+	color: #ffffff;
+}
+
+.card {
+	background-color: #8A8D8F;
+}
+
+.userInput {
+	width: 300px;
+}
+
+.subscriptionInput {
+	width: 100%;
+}
