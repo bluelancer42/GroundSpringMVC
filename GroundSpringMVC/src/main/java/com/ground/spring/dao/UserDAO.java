@@ -15,4 +15,6 @@ public interface UserDAO {
 	public User getUserById(int id);
 
 	public void removeUser(int id);
+
+	User validateUser(User user);
 }

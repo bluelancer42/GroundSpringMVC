@@ -16,4 +16,6 @@ public interface UserService {
 
 	public void removeUser(int id);
 
+	public User validateUser(User user);
+
 }

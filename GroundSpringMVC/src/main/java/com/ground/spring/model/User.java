@@ -24,6 +24,7 @@ public class User implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String password;
 
 	public User() {
 	}
@@ -75,6 +76,14 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Override

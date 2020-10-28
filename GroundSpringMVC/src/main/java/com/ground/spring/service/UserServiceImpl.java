@@ -47,4 +47,10 @@ public class UserServiceImpl implements UserService {
 	public void removeUser(int id) {
 		this.userDAO.removeUser(id);
 	}
+
+	@Override
+	@Transactional
+	public User validateUser(User user) {
+		return this.userDAO.validateUser(user);
+	}
 }

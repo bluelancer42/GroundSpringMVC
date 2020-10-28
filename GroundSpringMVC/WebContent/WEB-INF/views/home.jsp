@@ -5,7 +5,6 @@
 <spring:url value="/resources/css/main.css" var="mainCss" />
 <spring:url value="/resources/css/bootstrap-4.5.2/bootstrap.min.css"
 	var="bootstrapCSS" />
-<spring:url value="/resources/css/faq.css" var="faqCSS" />
 
 <link href="${bootstrapCSS}" rel="stylesheet" />
 <link href="${mainCss}" rel="stylesheet" />
