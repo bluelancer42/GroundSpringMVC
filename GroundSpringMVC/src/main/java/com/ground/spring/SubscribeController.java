@@ -57,7 +57,7 @@ public class SubscribeController {
 		subscription.setProduct(this.productService.getProductById(subscription.getProduct().getProductId()));
 		subscription.setUser(this.userService.getUserById(subscription.getUser().getUserId()));
 		if (!subscription.getToSend()) {
-			subscription.setUrl(this.subscriptionService.getSubscriptionUrl(subscription));
+			subscription = this.subscriptionService.getFormattedUrl(subscription);
 		}
 		this.subscriptionService.addSubscription(subscription);
 		return "redirect:/subscribe";

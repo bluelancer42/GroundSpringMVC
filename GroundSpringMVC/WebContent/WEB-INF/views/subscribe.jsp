@@ -12,6 +12,8 @@
 <link href="${bootstrapCSS}" rel="stylesheet" />
 <link href="${leafletCSS}" rel="stylesheet" />
 <link href="${subscribeCSS}" rel="stylesheet" />
+<spring:url value="/resources/css/main.css" var="mainCss" />
+<link href="${mainCss}" rel="stylesheet" />
 
 <spring:url value="/resources/js/jquery/jquery-3.5.1.min.js"
 	var="jqueryJs" />
@@ -19,11 +21,13 @@
 	var="bootstrapJs" />
 <spring:url value="/resources/js/subscribe.js" var="subscribeJs" />
 <spring:url value="/resources/js/leaflet/leaflet.js" var="leafletJs" />
+<spring:url value='/resources/js/mapbox/mapbox.js' var="mapboxJs" />
 
 <script src="${jqueryJs}"></script>
 <script src="${bootstrapJs}"></script>
-<script src="${leafletJs}"></script>
 
+<script src="${leafletJs}"></script>
+<script src="${mapboxJs}"></script>
 
 <title>Subscribe</title>
 </head>
@@ -50,9 +54,11 @@
 							Account</a></li>
 					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
-					<li class="nav-item "><a class="btn btn-danger header-btn"
+					<li class="nav-item "><a class="btn btn-warning header-btn"
 							href="subscribe">Subscribe</a></li>
 				</ul>
+				<h3 class="header-title">DoD Electro-Optical/Infrared (EO/IR)
+					Weather Data as a Service (WxDaaS)</h3>
 			</div>
 		</nav>
 	</div>
@@ -112,10 +118,20 @@
 									maxlength="200" hidden="true"
 									placeholder="/home/mydir/finaldest" /></td>
 						</tr>
+						<tr>
+							<td><form:label path="url" name="urlLabel" hidden="true">
+									<spring:message text="URL" />
+								</form:label></td>
+							<td><a href="" target="_blank" id="urlLink">
+									<form:label path="url" name="url" hidden="true"
+										class="url-width">
+									</form:label>
+								</a></td>
+						</tr>
 
 						<form:hidden path="user.userId" value="${user.userId}" />
 						<tr>
-							<td colspan="2"><input type="submit" class="btn btn-primary"
+							<td colspan="2"><input type="submit" class="btn btn-warning"
 								value="<spring:message text="Submit"/>" /></td>
 						</tr>
 					</table>

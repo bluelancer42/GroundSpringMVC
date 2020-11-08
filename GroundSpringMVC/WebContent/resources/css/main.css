@@ -1,3 +1,24 @@
-body {
+html, body {
 	background-color: #282b2b;
+	height: 100%;
+}
+
+h3 {
+	color: #ffffff;
+}
+
+.jumbotron {
+	background-color: #282b2b;
+}
+
+table td {
+	text-align: center;
+}
+
+.welcome-btn {
+	margin: 5px;
+}
+
+.header-title {
+	margin-left: 8rem;
 }

@@ -25,20 +25,35 @@ public class LoginController {
 		this.userService = us;
 	}
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("login");
+		User user = new User();
+		user.setUsername("christez");
+		mav.addObject("user", user);
+
+		return mav;
+	}
+
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("user") User p) {
 		ModelAndView mav = null;
+		User user = null;
 
-		User user = userService.validateUser(p);
+		user = userService.validateUser(p);
 
 		if (null != user) {
-			mav = new ModelAndView("home");
+			if (userService.verifyUserPassword(p.getPassword(), user.getPassword(), user.getSalt())) {
+				mav = new ModelAndView("home");
+			} else {
+				mav = new ModelAndView("login");
+				mav.addObject("message", "Username or Password is wrong!!");
+			}
 		} else {
 			mav = new ModelAndView("login");
 			mav.addObject("message", "Username or Password is wrong!!");
 		}
-
 		return mav;
 	}
 

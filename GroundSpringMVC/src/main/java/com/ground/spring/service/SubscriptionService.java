@@ -20,6 +20,6 @@ public interface SubscriptionService {
 
 	public void removeSubscription(int id);
 
-	public String getSubscriptionUrl(Subscription subscription);
+	public Subscription getFormattedUrl(Subscription subscription);
 
 }

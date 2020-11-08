@@ -62,7 +62,11 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 
 	@Override
 	@Transactional
-	public String getSubscriptionUrl(Subscription subscription) {
-		return this.subscriptionDAO.getSubscriptionUrl(subscription);
+	public Subscription getFormattedUrl(Subscription subscription) {
+		String url = "http://localhost:8080/geoserver/wms?request=GetMap&service=WMS&version=1.1.1&layers="
+				+ subscription.getProduct().getProductName().toString() + "&styles=default&srs=EPSG:4326&bbox="
+				+ subscription.getBbox().toString() + "width=780&height=330&format=image/png";
+		subscription.setUrl(url);
+		return subscription;
 	}
 }

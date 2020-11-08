@@ -10,7 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 @Entity
+@DynamicUpdate
 @Table(name = "user", schema = "EWS")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1553653694074548541L;
@@ -25,17 +28,21 @@ public class User implements Serializable {
 	private String lastName;
 	private String email;
 	private String password;
+	private String salt;
 
 	public User() {
 	}
 
-	public User(Integer userId, String username, String firstName, String lastName, String email) {
+	public User(Integer userId, String username, String firstName, String lastName, String email, String password,
+			String salt) {
 		super();
 		this.userId = userId;
 		this.username = username;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.password = password;
+		this.salt = salt;
 	}
 
 	public Integer getUserId() {
@@ -86,6 +93,14 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}
+
 	@Override
 	public int hashCode() {
 		int hash = 7;
@@ -119,6 +134,12 @@ public class User implements Serializable {
 			return false;
 		}
 		if (!Objects.equals(this.email, other.email)) {
+			return false;
+		}
+		if (!Objects.equals(this.password, other.password)) {
+			return false;
+		}
+		if (!Objects.equals(this.salt, other.salt)) {
 			return false;
 		}
 		return Objects.equals(this.userId, other.userId);

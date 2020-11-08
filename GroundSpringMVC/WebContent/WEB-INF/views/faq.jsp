@@ -8,6 +8,8 @@
 
 <link href="${bootstrapCSS}" rel="stylesheet" />
 <link href="${faqCSS}" rel="stylesheet" />
+<spring:url value="/resources/css/main.css" var="mainCss" />
+<link href="${mainCss}" rel="stylesheet" />
 
 <spring:url value="/resources/js/jquery/jquery-3.5.1.min.js"
 	var="jqueryJs" />
@@ -42,8 +44,11 @@
 							Account</a></li>
 					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
-					<li class="nav-item "><a class="btn btn-danger header-btn" href="subscribe">Subscribe</a></li>
+					<li class="nav-item "><a class="btn btn-warning header-btn"
+							href="subscribe">Subscribe</a></li>
 				</ul>
+				<h3 class="header-title">DoD Electro-Optical/Infrared (EO/IR)
+					Weather Data as a Service (WxDaaS)</h3>
 			</div>
 		</nav>
 		<div id="accordion">

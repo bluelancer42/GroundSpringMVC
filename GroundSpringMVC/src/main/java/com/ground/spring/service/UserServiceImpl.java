@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ground.spring.dao.UserDAO;
 import com.ground.spring.model.User;
+import com.ground.spring.util.PasswordUtils;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -53,4 +54,31 @@ public class UserServiceImpl implements UserService {
 	public User validateUser(User user) {
 		return this.userDAO.validateUser(user);
 	}
+
+	@Override
+	@Transactional
+	public User registerUser(User user) {
+		return this.userDAO.registerUser(user);
+	}
+
+	@Override
+	@Transactional
+	public List<User> checkUsername(User user) {
+		return this.userDAO.checkUsername(user);
+	}
+
+	@Override
+	@Transactional
+	public User encryptPassword(User user) {
+		user.setSalt(PasswordUtils.getSalt(32));
+		user.setPassword(PasswordUtils.generateSecurePassword(user.getPassword(), user.getSalt()));
+		return user;
+	}
+
+	@Override
+	@Transactional
+	public boolean verifyUserPassword(String pswd, String dbPswd, String salt) {
+		return PasswordUtils.verifyUserPassword(pswd, dbPswd, salt);
+	}
+
 }

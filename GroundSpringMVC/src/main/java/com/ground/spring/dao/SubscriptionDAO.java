@@ -20,5 +20,4 @@ public interface SubscriptionDAO {
 
 	public void removeSubscription(int id);
 
-	public String getSubscriptionUrl(Subscription subscription);
 }

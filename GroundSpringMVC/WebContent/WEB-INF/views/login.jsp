@@ -11,7 +11,6 @@
 <spring:url value="/resources/css/main.css" var="mainCss" />
 <spring:url value="/resources/css/bootstrap-4.5.2/bootstrap.min.css"
 	var="bootstrapCSS" />
-<spring:url value="/resources/css/faq.css" var="faqCSS" />
 
 <link href="${bootstrapCSS}" rel="stylesheet" />
 <link href="${mainCss}" rel="stylesheet" />
@@ -54,7 +53,11 @@
 							<tr>
 								<td></td>
 								<td align="left"><input type="submit"
-									class="btn btn-danger" value="<spring:message text="Login"/>" /></td>
+									class="btn btn-warning" value="<spring:message text="Login"/>" /></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td><a href="welcome">Home</a></td>
 							</tr>
 						</table>
 					</form:form>

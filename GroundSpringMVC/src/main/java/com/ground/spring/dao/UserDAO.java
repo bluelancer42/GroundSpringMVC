@@ -17,4 +17,9 @@ public interface UserDAO {
 	public void removeUser(int id);
 
 	User validateUser(User user);
+
+	User registerUser(User user);
+
+	List<User> checkUsername(User user);
+
 }

@@ -18,4 +18,12 @@ public interface UserService {
 
 	public User validateUser(User user);
 
+	public User registerUser(User user);
+
+	public List<User> checkUsername(User user);
+
+	public User encryptPassword(User user);
+	
+	public boolean verifyUserPassword(String pswd, String dbPswd, String salt);
+
 }

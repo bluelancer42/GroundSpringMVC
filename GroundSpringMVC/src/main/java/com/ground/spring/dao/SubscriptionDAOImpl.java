@@ -105,9 +105,4 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 		logger.info("Subscription deleted successfully, Subscription details=" + p);
 	}
 
-	public String getSubscriptionUrl(Subscription subscription) {
-		String url = "https://testurlfordestination.com?";
-		url = url + "BBOX=" + subscription.getBbox().toString();
-		return url;
-	}
 }

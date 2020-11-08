@@ -43,15 +43,25 @@ public class MyAccountController {
 		List<Subscription> subscriptions = this.subscriptionService.getSubscriptionByUserId(2);
 		SubscriptionForm subscriptionForm = new SubscriptionForm();
 		subscriptionForm.setSubscriptions(subscriptions);
+		User user = this.userService.getUserById(2);
 
 		model.addAttribute("subscription", subscriptionForm);
-		model.addAttribute("user", this.userService.getUserById(2));
+		model.addAttribute("user", user);
 		return "myaccount";
 	}
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
 	public String updateUser(@ModelAttribute("user") User p) {
-		this.userService.updateUser(p);
+		User user = this.userService.getUserById(p.getUserId());
+		boolean validUpdate = false;
+		if (p.getPassword() != null && user.getPassword() != null && user.getSalt() != null) {
+			validUpdate = this.userService.verifyUserPassword(p.getPassword(), user.getPassword(), user.getSalt());
+		}
+		if (validUpdate) {
+			p.setPassword(user.getPassword());
+			p.setSalt(user.getSalt());
+			this.userService.updateUser(p);
+		}
 		return "redirect:/myaccount";
 	}
 
@@ -63,7 +73,7 @@ public class MyAccountController {
 			for (Subscription subs : subscription) {
 				if (subs.getToSend() != null) {
 					if (!subs.getToSend()) {
-						subs.setUrl(this.subscriptionService.getSubscriptionUrl(subs));
+						subs = this.subscriptionService.getFormattedUrl(subs);
 					}
 					this.subscriptionService.updateSubscriptionById(subs);
 				}

@@ -10,6 +10,8 @@
 
 <link href="${bootstrapCSS}" rel="stylesheet" />
 <link href="${myAccountCSS}" rel="stylesheet" />
+<spring:url value="/resources/css/main.css" var="mainCss" />
+<link href="${mainCss}" rel="stylesheet" />
 
 <spring:url value="/resources/js/jquery/jquery-3.5.1.min.js"
 	var="jqueryJs" />
@@ -26,9 +28,8 @@
 	<div class="container-fluid pl-0 px-0">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 			<!-- Brand -->
-			<a class="navbar-brand" href="index">
-				<img alt="SMC Logo" src="resources/images/AFSC.png" width="50"
-					height="60">
+			<a class="navbar-brand" href="index"> <img alt="SMC Logo"
+				src="resources/images/AFSC.png" width="50" height="60">
 			</a>
 			<!-- Toggler/collapsibe Button -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -45,9 +46,11 @@
 							Account</a></li>
 					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
-					<li class="nav-item "><a class="btn btn-danger header-btn"
-							href="subscribe">Subscribe</a></li>
+					<li class="nav-item "><a class="btn btn-warning header-btn"
+						href="subscribe">Subscribe</a></li>
 				</ul>
+				<h3 class="header-title">DoD Electro-Optical/Infrared (EO/IR)
+					Weather Data as a Service (WxDaaS)</h3>
 			</div>
 		</nav>
 		<c:url var="updateUser" value="/updateUser"></c:url>
@@ -87,8 +90,16 @@
 										class="userInput" /></td>
 							</tr>
 							<tr>
-								<td colspan="2"><input type="submit" class="btn btn-danger"
-									value="<spring:message text="Save Changes"/>" /></td>
+								<td><form:label path="password">
+										<spring:message text="Confirm password for update" />
+									</form:label></td>
+								<td><form:password path="password" class="userInput" /></td>
+								<td><form:errors path="password" cssClass="error" /></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="submit"
+									class="btn btn-warning"
+									value="<spring:message text="Save Changes"/>" id="userSave" /></td>
 							</tr>
 						</table>
 
@@ -108,7 +119,7 @@
 					modelAttribute="subscription">
 					<div class="card">
 						<div class="card-body">
-							<div class="row card-text ">
+							<div class="card-text ">
 								<table>
 									<tr>
 										<th>Product Name</th>
@@ -125,6 +136,10 @@
 									<tr>
 										<td><form:hidden
 												path="subscriptions[${status.index}].subscriptionId" /></td>
+										<td><form:hidden
+												path="subscriptions[${status.index}].product.productId" /></td>
+										<td><form:hidden
+												path="subscriptions[${status.index}].product.productName" /></td>
 									</tr>
 									<tr>
 										<th>Send to destination or Get URL</th>
@@ -169,10 +184,17 @@
 												placeholder="/home/mydir/finaldest"
 												class="subscriptions[${status.index}].destination" /></td>
 									</tr>
+									<tr>
+										<th hidden="true" class="subscriptions[${status.index}].url">URL:</th>
+										<td><a href="" target="_blank" id="urlLink"> <form:label
+													path="subscriptions[${status.index}].url"
+													name="subscriptions[${status.index}].url" hidden="true">
+												</form:label>
+										</a></td>
+									</tr>
 								</table>
-								<input type="submit" class="btn btn-danger float-right"
-									value="<spring:message text="Save Changes"/>" />
-								<a
+								<input type="submit" class="btn btn-warning float-right"
+									value="<spring:message text="Save Changes"/>" /> <a
 									href="<c:url value='/removemysubscription/${subscription.subscriptionId}' />"
 									class="btn">Delete</a>
 							</div>
