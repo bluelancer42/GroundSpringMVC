@@ -26,35 +26,51 @@
 <script src="${mainJs}"></script>
 <script src="${groundJS}"></script>
 <script src="${bootstrapJs}"></script>
-<title>Login</title>
+<title>Registration</title>
 </head>
 <body>
 	<div class="container-fluid pl-0 px-0">
 		<div class="card bg-dark text-white">
 			<div class="card-body">
 				<div class="card-text">
-					<c:url var="login" value="/login"></c:url>
-					<form:form action="${login}" modelAttribute="user"
-						autocomplete="off">
+					<c:url var="register" value="/register"></c:url>
+					<form:form action="${register}" modelAttribute="user">
 						<table align="center">
 							<tr>
-								<td><form:label path="username">
-										<spring:message text="Username:" />
-									</form:label></td>
-								<td><form:input path="username" maxlength="200" /></td>
+								<td><form:label path="username">Username</form:label></td>
+								<td><form:input path="username" maxlength="200"
+										cssClass="form-control" /></td>
+								<td><form:errors path="username" cssClass="errormsg" /></td>
 							</tr>
 							<tr>
-								<td><form:label path="password">
-										<spring:message text="Password:" />
-									</form:label></td>
-								<td><form:password path="password" name="password"
-										id="password" maxlength="200" /></td>
+								<td><form:label path="password">Password</form:label></td>
+								<td><form:password path="password" cssClass="form-control" /></td>
+								<td><form:errors path="password" cssClass="errormsg" /></td>
 							</tr>
+							<tr>
+								<td><form:label path="firstName">FirstName</form:label></td>
+								<td><form:input path="firstName" cssClass="form-control" /></td>
+								<td><form:errors path="firstName" cssClass="errormsg" /></td>
+							</tr>
+							<tr>
+								<td><form:label path="lastName">LastName</form:label></td>
+								<td><form:input path="lastName" cssClass="form-control" /></td>
+								<td><form:errors path="lastName" cssClass="errormsg" /></td>
+							</tr>
+							<tr>
+								<td><form:label path="email">Email</form:label></td>
+								<td><form:input path="email" cssClass="form-control"
+										type="email" /></td>
+								<td><form:errors path="email" cssClass="errormsg" /></td>
+							</tr>
+
 							<tr>
 								<td></td>
 								<td align="left"><input type="submit"
-										class="btn btn-warning" value="<spring:message text="Login"/>" /></td>
+										class="btn btn-warning"
+										value="<spring:message text="Register"/>" /></td>
 							</tr>
+							<tr></tr>
 							<tr>
 								<td></td>
 								<td><a href="welcome">Home</a></td>

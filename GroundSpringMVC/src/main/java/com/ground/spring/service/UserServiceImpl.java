@@ -81,4 +81,16 @@ public class UserServiceImpl implements UserService {
 		return PasswordUtils.verifyUserPassword(pswd, dbPswd, salt);
 	}
 
+	@Override
+	@Transactional
+	public User getUserByUsername(String username) {
+		return this.userDAO.getUserByUsername(username);
+	}
+
+	@Override
+	@Transactional
+	public List<User> getUsersBySearch(String search) {
+		return this.userDAO.getUsersBySearch(search);
+	}
+
 }

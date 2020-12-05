@@ -18,6 +18,8 @@ public interface SubscriptionService {
 
 	public List<Subscription> getSubscriptionByUserId(int id);
 
+	public List<Subscription> getSubscriptionByProductId(int id);
+
 	public void removeSubscription(int id);
 
 	public Subscription getFormattedUrl(Subscription subscription);

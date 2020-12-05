@@ -16,10 +16,14 @@ public interface UserDAO {
 
 	public void removeUser(int id);
 
-	User validateUser(User user);
+	public User validateUser(User user);
 
-	User registerUser(User user);
+	public User registerUser(User user);
 
-	List<User> checkUsername(User user);
+	public List<User> checkUsername(User user);
+
+	public User getUserByUsername(String username);
+
+	public List<User> getUsersBySearch(String search);
 
 }

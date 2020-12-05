@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ground.spring.model.User;
 
-@SuppressWarnings("deprecation")
+@SuppressWarnings({ "deprecation", "rawtypes", "unchecked" })
 @Repository
 public class UserDAOImpl implements UserDAO {
 
@@ -36,7 +36,6 @@ public class UserDAOImpl implements UserDAO {
 		logger.info("User updated successfully, User Details=" + p);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> listUser() {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -66,7 +65,6 @@ public class UserDAOImpl implements UserDAO {
 		logger.info("User deleted successfully, User details=" + p);
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public User validateUser(User user) {
 		List<User> users = null;
 		Session session = this.sessionFactory.getCurrentSession();
@@ -79,22 +77,15 @@ public class UserDAOImpl implements UserDAO {
 		return users.size() > 0 ? users.get(0) : null;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public User registerUser(User user) {
-		Session session = this.sessionFactory.getCurrentSession();
-		String sql = "FROM User where username=:username";
-		Query query = session.createQuery(sql);
-		query.setParameter("username", user.getUsername());
-		List<User> users = query.getResultList();
-
-		if (users.size() <= 0) {
+		User users = getUserByUsername(user.getUsername());
+		if (users == null) {
 			addUser(user);
 		}
 
-		return users.size() > 0 ? users.get(0) : null;
+		return users != null ? users : null;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public List<User> checkUsername(User user) {
 
 		Session session = this.sessionFactory.getCurrentSession();
@@ -105,6 +96,64 @@ public class UserDAOImpl implements UserDAO {
 		List<User> users = query.getResultList();
 
 		return users;
+	}
+
+	public User getUserByUsername(String username) {
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql = "FROM User where username=:username";
+		Query query = session.createQuery(sql);
+		query.setParameter("username", username);
+		List<User> users = query.getResultList();
+
+		return users.size() > 0 ? users.get(0) : null;
+	}
+
+	public List<User> getUsersBySearch(String search) {
+		List<User> users = null;
+		Session session = this.sessionFactory.getCurrentSession();
+		String sql = "FROM User where upper(username) like :search";
+		String wildcardSearch = "%" + search.toUpperCase() + "%";
+		Query query = session.createQuery(sql);
+		query.setParameter("search", wildcardSearch);
+		List<User> usersList = query.getResultList();
+
+		query = null;
+		sql = "FROM User where upper(firstName) like :search";
+		query = session.createQuery(sql);
+		query.setParameter("search", wildcardSearch);
+		users = query.getResultList();
+		for (User user : users) {
+			if (!usersList.contains(user)) {
+				usersList.add(user);
+			}
+
+		}
+
+		query = null;
+		sql = "FROM User where upper(lastName) like :search";
+		query = session.createQuery(sql);
+		query.setParameter("search", wildcardSearch);
+		users = query.getResultList();
+		for (User user : users) {
+			if (!usersList.contains(user)) {
+				usersList.add(user);
+			}
+
+		}
+
+		query = null;
+		sql = "FROM User where upper(email) like :search";
+		query = session.createQuery(sql);
+		query.setParameter("search", wildcardSearch);
+		users = query.getResultList();
+		for (User user : users) {
+			if (!usersList.contains(user)) {
+				usersList.add(user);
+			}
+
+		}
+
+		return usersList;
 	}
 
 }

@@ -28,8 +28,9 @@
 	<div class="container-fluid pl-0 px-0">
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
 			<!-- Brand -->
-			<a class="navbar-brand" href="index"> <img alt="SMC Logo"
-				src="resources/images/AFSC.png" width="50" height="60">
+			<a class="navbar-brand" href="index">
+				<img alt="SMC Logo" src="resources/images/AFSC.png" width="50"
+					height="60">
 			</a>
 			<!-- Toggler/collapsibe Button -->
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -41,13 +42,20 @@
 			<!-- Navbar links -->
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+					<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="statistics">Statistics</a>
+							<a class="dropdown-item" href="adminuser">Search User</a>
+							<a class="dropdown-item" href="adminproduct">Search Product</a>
+						</div></li>
 					<li class="nav-item"><a class="nav-link" href="myaccount">My
 							Account</a></li>
 					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>
 					<li class="nav-item"><a class="nav-link" href="faq">FAQ</a></li>
 					<li class="nav-item "><a class="btn btn-warning header-btn"
-						href="subscribe">Subscribe</a></li>
+							href="subscribe">Subscribe</a></li>
 				</ul>
 				<h3 class="header-title">DoD Electro-Optical/Infrared (EO/IR)
 					Weather Data as a Service (WxDaaS)</h3>
@@ -70,7 +78,7 @@
 							</tr>
 							<tr>
 								<td><form:label path="firstName">
-										<spring:message text="First Name: " />
+										<spring:message text="First Name" />
 									</form:label></td>
 								<td><form:input path="firstName" maxlength="200"
 										class="userInput" /></td>
@@ -98,8 +106,8 @@
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit"
-									class="btn btn-warning"
-									value="<spring:message text="Save Changes"/>" id="userSave" /></td>
+										class="btn btn-warning"
+										value="<spring:message text="Save Changes"/>" id="userSave" /></td>
 							</tr>
 						</table>
 
@@ -186,15 +194,16 @@
 									</tr>
 									<tr>
 										<th hidden="true" class="subscriptions[${status.index}].url">URL:</th>
-										<td><a href="" target="_blank" id="urlLink"> <form:label
-													path="subscriptions[${status.index}].url"
+										<td><a href="" target="_blank" id="urlLink">
+												<form:label path="subscriptions[${status.index}].url"
 													name="subscriptions[${status.index}].url" hidden="true">
 												</form:label>
-										</a></td>
+											</a></td>
 									</tr>
 								</table>
 								<input type="submit" class="btn btn-warning float-right"
-									value="<spring:message text="Save Changes"/>" /> <a
+									value="<spring:message text="Save Changes"/>" />
+								<a
 									href="<c:url value='/removemysubscription/${subscription.subscriptionId}' />"
 									class="btn">Delete</a>
 							</div>

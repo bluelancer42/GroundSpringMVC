@@ -1,5 +1,7 @@
 package com.ground.spring;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,7 +17,7 @@ import com.ground.spring.model.User;
 import com.ground.spring.service.UserService;
 
 @Controller
-public class LoginController {
+public class RegisterController {
 
 	private UserService userService;
 
@@ -25,34 +27,36 @@ public class LoginController {
 		this.userService = us;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView showLogin(HttpServletRequest request, HttpServletResponse response) {
-		ModelAndView mav = new ModelAndView("login");
+	@RequestMapping(value = "/register", method = RequestMethod.GET)
+	public ModelAndView showRegistration(HttpServletRequest request, HttpServletResponse response) {
 		User user = new User();
+		ModelAndView mav;
+		mav = new ModelAndView("register");
 		mav.addObject("user", user);
+
 		return mav;
 	}
 
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView loginProcess(HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public ModelAndView registerProcess(HttpServletRequest request, HttpServletResponse response,
 			@ModelAttribute("user") User p) {
+
+		List<User> users = userService.checkUsername(p);
 		ModelAndView mav = null;
-		User user = null;
-
-		user = userService.validateUser(p);
-
-		if (null != user) {
-			if (userService.verifyUserPassword(p.getPassword(), user.getPassword(), user.getSalt())) {
-				mav = new ModelAndView("home");
+		if (users.size() <= 0) {
+			p = userService.encryptPassword(p);
+			User user = userService.registerUser(p);
+			if (null != user) {
+				mav = new ModelAndView("register");
 			} else {
 				mav = new ModelAndView("login");
-				mav.addObject("message", "Username or Password is wrong!!");
 			}
 		} else {
-			mav = new ModelAndView("login");
-			mav.addObject("message", "Username or Password is wrong!!");
+			mav = new ModelAndView("register");
+			mav.addObject("user", p);
+			mav.addObject("message", "Username already registered");
 		}
+
 		return mav;
 	}
-
 }

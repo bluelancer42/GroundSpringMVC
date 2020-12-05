@@ -53,6 +53,12 @@ public class SubscriptionServiceImpl implements SubscriptionService {
 	public List<Subscription> getSubscriptionByUserId(int id) {
 		return this.subscriptionDAO.getSubscriptionByUserId(id);
 	}
+	
+	@Override
+	@Transactional
+	public List<Subscription> getSubscriptionByProductId(int id) {
+		return this.subscriptionDAO.getSubscriptionByProductId(id);
+	}
 
 	@Override
 	@Transactional

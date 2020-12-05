@@ -17,6 +17,7 @@
 	var="jqueryJs" />
 <spring:url value="/resources/js/bootstrap-4.5.2/bootstrap.min.js"
 	var="bootstrapJs" />
+<spring:url value="/resources/js/admin.js" var="adminJS" />
 
 <script src="${jqueryJs}"></script>
 <script src="${bootstrapJs}"></script>
@@ -41,7 +42,14 @@
 			<!-- Navbar links -->
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+					<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="statistics">Statistics</a>
+							<a class="dropdown-item" href="adminuser">Search User</a>
+							<a class="dropdown-item" href="adminproduct">Search Product</a>
+						</div></li>
 					<li class="nav-item"><a class="nav-link" href="myaccount">My
 							Account</a></li>
 					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>
@@ -53,45 +61,57 @@
 					Weather Data as a Service (WxDaaS)</h3>
 			</div>
 		</nav>
-		<nav>
-			<div class="nav nav-tabs bg-dark" id="nav-tab" role="tablist">
-				<a class="nav-item nav-link active" id="nav-home-tab"
-					data-toggle="tab" href="#nav-home" role="tab"
-					aria-controls="nav-home" aria-selected="true">Home</a>
-				<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-					href="#nav-profile" role="tab" aria-controls="nav-profile"
-					aria-selected="false">User Search</a>
-				<a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
-					href="#nav-contact" role="tab" aria-controls="nav-contact"
-					aria-selected="false">Add/Remove Product</a>
+		<br>
+		<c:url var="searchAction" value="/adminuser"></c:url>
+		<form:form action="${searchAction}" modelAttribute="user">
+			<div class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search"
+					placeholder="Search" aria-label="Search" id="gsearch"
+					name="gsearch" value="${gsearch}">
+				<input type="submit" value="<spring:message text="Search User"/>"
+					class="btn btn-outline-light my-2 my-sm-0" />
 			</div>
-		</nav>
-		<div class="tab-content" id="nav-tabContent">
-			<div class="tab-pane fade show active bg-dark" id="nav-home"
-				role="tabpanel" aria-labelledby="nav-home-tab">
-				<h3 class="center">Sheet for getting subscription statistics</h3>
-				<div class="card">
-					<div class="card-body">
-						<div class="row card-text ">
-							<form class="form-inline my-2 my-lg-0">
-								<input class="form-control mr-sm-2" type="search"
-									placeholder="Search" aria-label="Search">
-								<button class="btn btn-outline-light my-2 my-sm-0"
-									type="submit">Search</button>
-							</form>
+			<div>
+				<c:forEach items="${usersList}" var="userList" varStatus="status">
+					<div class="card">
+						<div class="card-body">
+							<div class="row card-text ">
+								<table>
+									<tr>
+										<th>Username</th>
+										<th>|</th>
+										<th>First Name</th>
+										<th>|</th>
+										<th>Last Name</th>
+										<th>|</th>
+										<th>Email</th>
+									</tr>
+									<tr>
+										<td>${userLinks.get(status.index)}</td>
+										<th>|</th>
+										<td><form:label path="firstName">
+												<spring:message text="${userList.firstName}" />
+											</form:label></td>
+										<th>|</th>
+										<td><form:label path="lastName">
+												<spring:message text="${userList.lastName}" />
+											</form:label></td>
+										<th>|</th>
+										<td><form:label path="email">
+												<spring:message text="${userList.email}" />
+											</form:label></td>
+										<th></th>
+										<td><a
+												href="<c:url value='/removeuser/${userList.userId}' />"
+												class="btn btn-outline-danger btn-sm">Delete</a></td>
+									</tr>
+								</table>
+							</div>
 						</div>
 					</div>
-				</div>
+				</c:forEach>
 			</div>
-			<div class="tab-pane fade" id="nav-profile" role="tabpanel"
-				aria-labelledby="nav-profile-tab">
-				<h3>User update support</h3>
-			</div>
-			<div class="tab-pane fade" id="nav-contact" role="tabpanel"
-				aria-labelledby="nav-contact-tab">
-				<h3>Sheet for adding/removing products</h3>
-			</div>
-		</div>
+		</form:form>
 	</div>
 </body>
 </html>

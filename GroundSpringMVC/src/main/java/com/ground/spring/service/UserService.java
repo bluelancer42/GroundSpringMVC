@@ -23,7 +23,11 @@ public interface UserService {
 	public List<User> checkUsername(User user);
 
 	public User encryptPassword(User user);
-	
+
 	public boolean verifyUserPassword(String pswd, String dbPswd, String salt);
+
+	public User getUserByUsername(String username);
+
+	public List<User> getUsersBySearch(String search);
 
 }

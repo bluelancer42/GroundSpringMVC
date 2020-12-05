@@ -12,6 +12,10 @@ h3 {
 	color: #ffffff;
 }
 
+div {
+	color: #ffffff;
+}
+
 /* #nav-home h3 {
 	color: white;
 	background-color: #428bca;
@@ -25,4 +29,16 @@ h3 {
 	margin: auto;
 	width: 50%;
 	padding: 10px;
+}
+/* 
+table {
+	width: 100%;
+} */
+
+.userInput {
+	width: 300px;
+}
+
+.subscriptionInput {
+	width: 100%;
 }

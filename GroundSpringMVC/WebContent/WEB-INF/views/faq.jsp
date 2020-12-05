@@ -39,7 +39,14 @@
 			<!-- Navbar links -->
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="admin">Admin</a></li>
+					<li class="nav-item dropdown"><a
+							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false">Admin</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="statistics">Statistics</a>
+							<a class="dropdown-item" href="adminuser">Search User</a>
+							<a class="dropdown-item" href="adminproduct">Search Product</a>
+						</div></li>
 					<li class="nav-item"><a class="nav-link" href="myaccount">My
 							Account</a></li>
 					<li class="nav-item"><a class="nav-link" href="products">Products</a></li>

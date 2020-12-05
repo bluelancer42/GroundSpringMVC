@@ -18,6 +18,8 @@ public interface SubscriptionDAO {
 
 	public List<Subscription> getSubscriptionByUserId(int id);
 
+	public List<Subscription> getSubscriptionByProductId(int id);
+
 	public void removeSubscription(int id);
 
 }

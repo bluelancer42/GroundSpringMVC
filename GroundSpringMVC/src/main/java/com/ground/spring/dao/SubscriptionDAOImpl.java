@@ -96,6 +96,23 @@ public class SubscriptionDAOImpl implements SubscriptionDAO {
 	}
 
 	@Override
+	public List<Subscription> getSubscriptionByProductId(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		// create Criteria
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+		CriteriaQuery<Subscription> criteria = builder.createQuery(Subscription.class);
+		Root<Subscription> mySubscriptionRoot = criteria.from(Subscription.class);
+		Join<Subscription, User> joinObject = mySubscriptionRoot.join("product");
+		criteria.select(mySubscriptionRoot).where(joinObject.get("productId").in(id));
+		criteria.orderBy(builder.asc(mySubscriptionRoot.get("subscriptionId")));
+		List<Subscription> subscriptionsList = session.createQuery(criteria).getResultList();
+		for (Subscription p : subscriptionsList) {
+			logger.info("Subscription List::" + p);
+		}
+		return subscriptionsList;
+	}
+
+	@Override
 	public void removeSubscription(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Subscription p = (Subscription) session.load(Subscription.class, Integer.valueOf(id));
